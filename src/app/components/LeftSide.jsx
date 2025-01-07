@@ -1,31 +1,16 @@
 "use client";
 import { useState } from "react";
 
-export const LeftSide = () => {
-  const [cities, setCities] = useState([]);
-  const [searched, setSearched] = useState([]);
-
-  async function getData() {
-    const result = await fetch("https://countriesnow.space/api/v0.1/countries");
-    const data = await result.json();
-    let incomeCities = data.data.map((country) => {
-      return country.cities;
-    });
-    incomeCities = incomeCities.flat().tolow;
-    setCities(incomeCities);
-  }
-  getData();
-
-  const searchHandler = (e) => {
-    const search = e.target.value;
-    const filtered = cities.filter((city) => {
-      return city.includes(search);
-    });
-    setSearched(filtered);
-  };
-
+export const LeftSide = ({
+  city,
+  searchHandler,
+  searched,
+  selectCity,
+  searchInput,
+  date,
+}) => {
   return (
-    <div className="flex justify-center w-1/2 bg-[#F9FAFB] h-screen p-10">
+    <div className="flex justify-center w-1/2  h-screen p-10">
       <div className="relative flex flex-col  items-end w-3/4">
         <img
           src="/sun.svg"
@@ -37,29 +22,34 @@ export const LeftSide = () => {
             <div className="w-10 h-10 flex justify-center items-center pl-1 z-10">
               <img src="/search.svg" alt="" className=" ml-1" />
             </div>
-            <div className="flex">
+            <div className="flex w-full">
               <input
                 type="text"
                 name=""
+                value={searchInput}
                 placeholder="Search"
                 id=""
                 onChange={searchHandler}
-                className="w-full rounded-3xl  border-none focus:outline-none pl-1 z-10"
+                className="w-full rounded-3xl  border-none focus:outline-none pl-1 z-10 focus:placeholder-white"
               />
             </div>
           </div>
-          {/* <div className="bg-white p-10 absolute z-0 w-full">
-            {searched.length > 0 &&
-              searched.slice(0, 5).map((city) => <p>{city}</p>)}
-          </div> */}
+
+          {searched.length > 0 && (
+            <div className="bg-white p-10 absolute z-0 w-full rounded-3xl flex flex-col items-start">
+              {searched.slice(0, 5).map((city) => (
+                <button onClick={() => selectCity(city)}>{city}</button>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex h-5/6 flex-col gap-10 w-[414px] bg-gradient-to-t from-white to-white/1 h-3/4 rounded-3xl z-10 overflow-hidden shadow-md">
           <div className="backdrop-blur-sm">
             <div className="flex pl-[40px] pt-[56px]">
               <div>
-                <p className="date text-[#9CA3AF]">January 7, 2025</p>
-                <div className="text-5xl font-bold">Ulaanbaatar</div>
+                <p className="date text-[#9CA3AF]">{date}</p>
+                <div className="text-5xl font-bold">{city}</div>
               </div>
               <img src="/location.svg" alt="" />
             </div>
@@ -86,5 +76,3 @@ export const LeftSide = () => {
     </div>
   );
 };
-
-// border-muted-foreground/20

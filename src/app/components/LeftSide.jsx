@@ -8,18 +8,22 @@ export const LeftSide = ({
   selectCity,
   searchInput,
   date,
+  day,
+  conditionDay,
+  // weather,
 }) => {
   return (
     <div className="flex justify-center w-1/2  h-screen p-10">
-      <div className="relative flex flex-col  items-end w-3/4">
+      <div className="relative flex flex-col justify-center items-end w-[520px]">
         <img
           src="/sun.svg"
           alt=""
-          className="absolute z-0 top-0 left-[-20px]"
+          className="absolute z-0 top-[80px] left-[20px]"
         />
-        <div className="border-2 border-black w-full rounded-full border-none w-[519px] z-10 overflow-hidden">
-          <div className="flex bg-white rounded-full px-6 py-4">
-            <div className="w-10 h-10 flex justify-center items-center pl-1 z-10">
+
+        <div className="z-[120] border-2 border-black rounded-full border-none w-[519px] overflow-hidden">
+          <div className="absolute top-[40px] flex bg-white rounded-full px-6 py-4">
+            <div className=" w-10 h-10 flex justify-center items-center pl-1 z-10">
               <img src="/search.svg" alt="" className=" ml-1" />
             </div>
             <div className="flex w-full">
@@ -30,21 +34,25 @@ export const LeftSide = ({
                 placeholder="Search"
                 id=""
                 onChange={searchHandler}
-                className="w-full rounded-3xl  border-none focus:outline-none pl-1 z-10 focus:placeholder-white"
+                className="w-full rounded-3xl  border-none focus:outline-none pl-1 z-[100] focus:placeholder-white"
               />
             </div>
           </div>
 
           {searched.length > 0 && (
-            <div className="bg-white p-10 absolute z-0 w-full rounded-3xl flex flex-col items-start">
-              {searched.slice(0, 5).map((city) => (
-                <button onClick={() => selectCity(city)}>{city}</button>
+            <div className="top-[120px] z-[230]  bg-white/90 p-10 absolute z-10 w-full rounded-3xl flex flex-col items-start">
+              {searched.slice(0, 5).map((city, index) => (
+                <button key={index} onClick={() => selectCity(city)}>
+                  <div className="flex items-center">
+                    <img src="/location.svg" /> {city}
+                  </div>
+                </button>
               ))}
             </div>
           )}
         </div>
 
-        <div className="flex h-5/6 flex-col gap-10 w-[414px] bg-gradient-to-t from-white to-white/1 h-3/4 rounded-3xl z-10 overflow-hidden shadow-md">
+        <div className="z-0 flex h-5/6 flex-col gap-10 w-[414px] bg-gradient-to-t from-white to-white/1 h-3/4 rounded-3xl z-10 overflow-hidden shadow-md">
           <div className="backdrop-blur-sm">
             <div className="flex pl-[40px] pt-[56px]">
               <div>
@@ -60,9 +68,9 @@ export const LeftSide = ({
           <div className="flex flex-col justify-center items-center gap-6">
             <div>
               <p className="text-[140px] font-extrabold bg-gradient-to-t from-white to-black text-transparent bg-clip-text">
-                -11.3°
+                {day}
               </p>
-              <p className="text-[#FF8E27] font-bold">Bright</p>
+              <p className="text-[#FF8E27] font-bold">{conditionDay}</p>
             </div>
             <div className="flex justify-between w-[318px]">
               <img src="/home.svg" alt="" />

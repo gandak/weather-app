@@ -6,18 +6,18 @@ export const RightSide = (props) => {
     const condition = conditionDay.toLowerCase();
 
     switch (true) {
-      case condition.includes("sun"):
-        return "bigsun.svg";
+      case condition.includes("clear"):
+        return "/bigmoon.svg";
       case condition.includes("rain"):
-        return "/weatherIcons/rainy.svg";
+        return "/weatherIcons/nightRainy.svg";
       case condition.includes("cloud"):
-        return "/weatherIcons/cloudy.svg";
+        return "/weatherIcons/nightCloudy.svg";
       case condition.includes("snow"):
-        return "/weatherIcons/snowy.svg";
-      case condition.includes("thunder"):
+        return "/weatherIcons/nightSnowy.svg";
+      case condition.includes("nightThunder"):
         return "/weatherIcons/thunder.svg";
       case condition.includes("wind"):
-        return "/weatherIcons/wind.svg";
+        return "/weatherIcons/nightWindy.svg";
     }
   }
 

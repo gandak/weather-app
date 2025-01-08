@@ -12,9 +12,28 @@ export const LeftSide = ({
   conditionDay,
   // weather,
 }) => {
+  function getWeatherIcon(conditionDay) {
+    const condition = conditionDay.toLowerCase();
+
+    switch (true) {
+      case condition.includes("sun"):
+        return "bigsun.svg";
+      case condition.includes("rain"):
+        return "/weatherIcons/rainy.svg";
+      case condition.includes("cloud"):
+        return "/weatherIcons/cloudy.svg";
+      case condition.includes("snow"):
+        return "/weatherIcons/snowy.svg";
+      case condition.includes("thunder"):
+        return "/weatherIcons/thunder.svg";
+      case condition.includes("wind"):
+        return "/weatherIcons/wind.svg";
+    }
+  }
+
   return (
-    <div className="flex justify-center w-1/2  h-screen p-10">
-      <div className="relative flex flex-col justify-center items-end w-[520px]">
+    <div className="flex justify-center w-1/2  h-screen ">
+      <div className="relative flex flex-col justify-center items-end w-[520px] h-screen pt-10">
         <img
           src="/sun.svg"
           alt=""
@@ -22,7 +41,7 @@ export const LeftSide = ({
         />
 
         <div className="z-[120] border-2 border-black rounded-full border-none w-[519px] overflow-hidden">
-          <div className="absolute top-[40px] flex bg-white rounded-full px-6 py-4">
+          <div className="absolute top-[40px] flex bg-white rounded-full px-6 py-4 w-full">
             <div className=" w-10 h-10 flex justify-center items-center pl-1 z-10">
               <img src="/search.svg" alt="" className=" ml-1" />
             </div>
@@ -52,7 +71,7 @@ export const LeftSide = ({
           )}
         </div>
 
-        <div className="z-0 flex h-5/6 flex-col gap-10 w-[414px] bg-gradient-to-t from-white to-white/1 h-3/4 rounded-3xl z-10 overflow-hidden shadow-md">
+        <div className="z-0 flex h-4/5 flex-col gap-10 w-[414px] bg-gradient-to-t from-white to-white/1  rounded-3xl z-10 overflow-hidden shadow-md">
           <div className="backdrop-blur-sm">
             <div className="flex pl-[40px] pt-[56px]">
               <div>
@@ -62,7 +81,11 @@ export const LeftSide = ({
               <img src="/location.svg" alt="" />
             </div>
             <div className="flex justify-center">
-              <img src="/bigsun.svg" alt="" className="w-[262px] h-[262px]" />
+              <img
+                src={getWeatherIcon(conditionDay)}
+                alt=""
+                className="w-[262px] h-[262px]"
+              />
             </div>
           </div>
           <div className="flex flex-col justify-center items-center gap-6">

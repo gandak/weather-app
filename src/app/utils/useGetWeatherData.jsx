@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function useGetWeatherData(selectedCity) {
   const [weatherData, setWeatherData] = useState({

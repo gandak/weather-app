@@ -6,6 +6,7 @@ import { Background } from "./components/Background";
 import { useGetData } from "./utils/useGetData";
 import { useGetWeatherData } from "./utils/useGetWeatherData";
 import { getDateToday } from "./utils/getDateToday";
+import { Input } from "./components/Input";
 
 export default function Home() {
   const [searched, setSearched] = useState({});
@@ -41,22 +42,28 @@ export default function Home() {
   };
 
   return (
-    <div className="flex justify-between bg-[#F9FAFB]">
+    <div className="bg-[#F9FAFB] flex w-screen h-screen">
       <Background />
-      <LeftSide
-        searchHandler={searchHandler}
-        searched={searched}
-        selectCity={selectCity}
-        searchInput={searchInput}
-        city={selectedCity}
-        date={formattedDate}
-        weather={weatherData.day}
-      />
-      <RightSide
-        city={selectedCity}
-        date={formattedDate}
-        weather={weatherData.night}
-      />
+      <div className="w-1/2 bg-[#F9FAFB] flex justify-center items-center">
+        <LeftSide
+          city={selectedCity}
+          date={formattedDate}
+          weather={weatherData.day}
+        />
+        <Input
+          searchHandler={searchHandler}
+          searched={searched}
+          selectCity={selectCity}
+          searchInput={searchInput}
+        />
+      </div>
+      <div className="bg-[url('/curvedbg.svg')] bg-cover bg-center w-1/2 text-white flex justify-center items-center ">
+        <RightSide
+          city={selectedCity}
+          date={formattedDate}
+          weather={weatherData.night}
+        />
+      </div>
     </div>
   );
 }

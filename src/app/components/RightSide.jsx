@@ -1,10 +1,8 @@
 "use client";
-import { useState } from "react";
 
 export const RightSide = ({ city, date, weather }) => {
   function getWeatherIcon(conditionNight) {
     const condition = conditionNight.toLowerCase();
-    // const condition = conditionNight;
 
     switch (true) {
       case condition.includes("clear"):
@@ -19,17 +17,19 @@ export const RightSide = ({ city, date, weather }) => {
         return "/weatherIcons/thunder.svg";
       case condition.includes("wind"):
         return "/weatherIcons/nightWindy.svg";
+      default:
+        return "/bigmoon.svg";
     }
   }
 
   return (
-    <div className="bg-[url('/nightbg.svg')] bg-center bg-cover bg-no-repeat w-1/2 flex justify-center items-center h-screen">
+    <div className=" bg-center bg-cover bg-no-repeat w-1/2 flex justify-center items-center h-screen">
       <div className="w-[520px] flex items-center h-full z-[130]">
         <div className="relative h-5/6 flex items-center">
           <img
             src="/moon.svg"
             alt=""
-            className="absolute z-0 bottom-0 right-[-80px]"
+            className="absolute z-0 bottom-[-60px] right-[-80px]"
           />
           <div className="flex flex-col justify-center gap-10 w-[414px] backdrop-blur-sm  rounded-3xl z-[101] overflow-hidden shadow-md h-full">
             <div>

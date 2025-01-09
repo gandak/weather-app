@@ -2,61 +2,19 @@
 import { useState } from "react";
 import { getWeatherIcon } from "../utils/getWeatherIcon";
 
-export const LeftSide = ({
-  city,
-  searchHandler,
-  searched,
-  selectCity,
-  searchInput,
-  date,
-  weather,
-}) => {
+export const LeftSide = ({ city, date, weather }) => {
   return (
     <div className="flex justify-center w-1/2  h-screen ">
-      <div className="relative flex flex-col justify-center items-end w-[520px] h-screen pt-10">
+      <div className="relative flex flex-col justify-center items-end w-[520px] h-screen">
         <img
           src="/sun.svg"
           alt=""
           className="absolute z-0 top-[80px] left-[20px]"
         />
 
-        <div className="z-[120] border-2 border-black rounded-full border-none w-[519px] overflow-hidden">
-          <div className="absolute top-[40px] flex bg-white rounded-full px-6 py-4 w-full">
-            <div className=" w-10 h-10 flex justify-center items-center pl-1 z-10">
-              <img src="/search.svg" alt="" className=" ml-1" />
-            </div>
-            <div className="flex w-full">
-              <input
-                type="text"
-                name=""
-                value={searchInput}
-                placeholder="Search"
-                id=""
-                onChange={searchHandler}
-                className="w-full rounded-3xl text-[20px] font-bold  border-none focus:outline-none pl-1 z-[100] focus:placeholder-white"
-              />
-            </div>
-          </div>
-
-          {searched.length > 0 && (
-            <div className="top-[120px] z-[230]  bg-white/90 p-10 absolute z-10 w-full rounded-3xl flex flex-col items-start">
-              {searched.slice(0, 5).map((country, index) => (
-                <button key={index} onClick={() => selectCity(country.city)}>
-                  <div className="flex items-center">
-                    <img src="/location.svg" />{" "}
-                    <div className="text-[20px] font-bold">
-                      {country.city + ", " + country.country}
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="z-0 flex h-4/5 flex-col gap-10 w-[414px] bg-gradient-to-t from-white to-white/1  rounded-3xl z-10 overflow-hidden shadow-md">
+        <div className="z-0 flex h-5/6 flex-col gap-10 w-[414px] bg-gradient-to-t from-white to-white/1 justify-center rounded-3xl z-10 overflow-hidden shadow-md">
           <div className="backdrop-blur-sm">
-            <div className="flex pl-[40px] pt-[56px]">
+            <div className="flex pl-[40px]">
               <div>
                 <p className="date text-[#9CA3AF]">{date}</p>
                 <div className="text-5xl font-bold">{city}</div>

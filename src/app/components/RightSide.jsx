@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
 
-export const RightSide = (props) => {
-  function getWeatherIcon(conditionDay) {
-    const condition = conditionDay.toLowerCase();
+export const RightSide = ({ city, date, weather }) => {
+  function getWeatherIcon(conditionNight) {
+    const condition = conditionNight.toLowerCase();
+    // const condition = conditionNight;
 
     switch (true) {
       case condition.includes("clear"):
@@ -34,28 +35,26 @@ export const RightSide = (props) => {
             <div>
               <div className="flex pl-[40px] pt-[0px] ">
                 <div>
-                  <p className="date text-[#9CA3AF]">{props.date}</p>
-                  <div className="text-5xl text-white font-bold">
-                    {props.city}
-                  </div>
+                  <p className="date text-[#9CA3AF]">{date}</p>
+                  <div className="text-5xl text-white font-bold">{city}</div>
                 </div>
                 <img src="/location.svg" alt="" />
               </div>
               <div className="flex justify-center">
                 <img
-                  src={getWeatherIcon(props.conditionNight)}
+                  src={getWeatherIcon(weather.conditionNight)}
                   alt=""
                   className="w-[262px] h-[262px]"
                 />
               </div>
             </div>
             <div className="flex flex-col items-center gap-6">
-              <div>
+              <div className="w-full flex flex-col items-center">
                 <p className="text-[140px] font-extrabold bg-gradient-to-t from-black to-white text-transparent bg-clip-text">
-                  {props.night}
+                  {weather.minTemp}
                 </p>
                 <p className="text-[#FF8E27] font-bold">
-                  {props.conditionNight}
+                  {weather.conditionNight}
                 </p>
               </div>
               <div className="flex justify-between w-[318px]">

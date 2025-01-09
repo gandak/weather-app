@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { getWeatherIcon } from "../utils/getWeatherIcon";
 
 export const LeftSide = ({
   city,
@@ -8,29 +9,8 @@ export const LeftSide = ({
   selectCity,
   searchInput,
   date,
-  day,
-  conditionDay,
-  // weather,
+  weather,
 }) => {
-  function getWeatherIcon(conditionDay) {
-    const condition = conditionDay.toLowerCase();
-
-    switch (true) {
-      case condition.includes("sun"):
-        return "bigsun.svg";
-      case condition.includes("rain"):
-        return "/weatherIcons/rainy.svg";
-      case condition.includes("cloud"):
-        return "/weatherIcons/cloudy.svg";
-      case condition.includes("snow"):
-        return "/weatherIcons/snowy.svg";
-      case condition.includes("thunder"):
-        return "/weatherIcons/thunder.svg";
-      case condition.includes("wind"):
-        return "/weatherIcons/wind.svg";
-    }
-  }
-
   return (
     <div className="flex justify-center w-1/2  h-screen ">
       <div className="relative flex flex-col justify-center items-end w-[520px] h-screen pt-10">
@@ -53,17 +33,20 @@ export const LeftSide = ({
                 placeholder="Search"
                 id=""
                 onChange={searchHandler}
-                className="w-full rounded-3xl  border-none focus:outline-none pl-1 z-[100] focus:placeholder-white"
+                className="w-full rounded-3xl text-[20px] font-bold  border-none focus:outline-none pl-1 z-[100] focus:placeholder-white"
               />
             </div>
           </div>
 
           {searched.length > 0 && (
             <div className="top-[120px] z-[230]  bg-white/90 p-10 absolute z-10 w-full rounded-3xl flex flex-col items-start">
-              {searched.slice(0, 5).map((city, index) => (
-                <button key={index} onClick={() => selectCity(city)}>
+              {searched.slice(0, 5).map((country, index) => (
+                <button key={index} onClick={() => selectCity(country.city)}>
                   <div className="flex items-center">
-                    <img src="/location.svg" /> {city}
+                    <img src="/location.svg" />{" "}
+                    <div className="text-[20px] font-bold">
+                      {country.city + ", " + country.country}
+                    </div>
                   </div>
                 </button>
               ))}
@@ -82,18 +65,18 @@ export const LeftSide = ({
             </div>
             <div className="flex justify-center">
               <img
-                src={getWeatherIcon(conditionDay)}
+                src={getWeatherIcon(weather.conditionDay)}
                 alt=""
                 className="w-[262px] h-[262px]"
               />
             </div>
           </div>
           <div className="flex flex-col justify-center items-center gap-6">
-            <div>
+            <div className="w-full flex flex-col items-center">
               <p className="text-[140px] font-extrabold bg-gradient-to-t from-white to-black text-transparent bg-clip-text">
-                {day}
+                {weather.maxTemp}
               </p>
-              <p className="text-[#FF8E27] font-bold">{conditionDay}</p>
+              <p className="text-[#FF8E27] font-bold">{weather.conditionDay}</p>
             </div>
             <div className="flex justify-between w-[318px]">
               <img src="/home.svg" alt="" />

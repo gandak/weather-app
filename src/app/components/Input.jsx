@@ -1,3 +1,5 @@
+import { ButtonsSearched } from "./ButtonsSearched";
+
 export const Input = ({ searchHandler, searched, selectCity, searchInput }) => {
   return (
     <div className="absolute top-[40px]  z-[130]">
@@ -19,17 +21,15 @@ export const Input = ({ searchHandler, searched, selectCity, searchInput }) => {
           </div>
         </div>
 
-        {searched.length > 0 && (
+        {searched.length && (
           <div className="top-[80px] z-[230]  bg-white/90 p-10 absolute z-10 w-full rounded-3xl flex flex-col items-start">
             {searched.slice(0, 5).map((country, index) => (
-              <button key={index} onClick={() => selectCity(country.city)}>
-                <div className="flex items-center">
-                  <img src="/location.svg" />{" "}
-                  <div className="text-[20px] font-bold">
-                    {country.city + ", " + country.country}
-                  </div>
-                </div>
-              </button>
+              <ButtonsSearched
+                index={index}
+                cityName={country.city}
+                countryName={country.country}
+                selectCity={selectCity}
+              />
             ))}
           </div>
         )}

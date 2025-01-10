@@ -9,7 +9,9 @@ export function useGetData() {
 
     let incomeCities = data.data.map((country) => {
       let cityWithCountry = country.cities.map((arr) => {
-        return { country: country.country, city: arr };
+        if (arr === "Ulan Bator")
+          return { country: country.country, city: "Ulaanbaatar" };
+        else return { country: country.country, city: arr };
       });
 
       return cityWithCountry;
@@ -18,7 +20,6 @@ export function useGetData() {
     incomeCities = incomeCities.flat();
 
     setCities(incomeCities);
-    console.log(incomeCities);
   };
 
   useEffect(() => {

@@ -3,14 +3,14 @@ import { useState } from "react";
 import { LeftSide } from "./components/LeftSide";
 import { RightSide } from "./components/RightSide";
 import { Background } from "./components/Background";
-import { useGetData } from "./utils/useGetData";
-import { useGetWeatherData } from "./utils/useGetWeatherData";
+import { useGetData } from "./hooks/useGetData";
+import { useGetWeatherData } from "./hooks/useGetWeatherData";
 import { getDateToday } from "./utils/getDateToday";
 import { Input } from "./components/Input";
 
 export default function Home() {
   const [searched, setSearched] = useState({});
-  const [selectedCity, setSelectedCity] = useState("Ulan Bator");
+  const [selectedCity, setSelectedCity] = useState("Ulaanbaatar");
   const [searchInput, setSearchInput] = useState("");
 
   const cities = useGetData();

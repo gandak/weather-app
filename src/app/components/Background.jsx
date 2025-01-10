@@ -6,7 +6,7 @@ export const Background = () => {
           <div className=" absolute flex items-center justify-center  border-[1px] border-muted-foreground/20 w-[540px] h-[540px] rounded-full">
             <div className=" absolute flex items-center justify-center  border-[1px] border-muted-foreground/20 w-[940px] h-[940px] rounded-full">
               <div className=" absolute flex items-center justify-center  border-[1px] border-muted-foreground/20 w-[1340px] h-[1340px] rounded-full">
-                <div className="flex justify-center  items-center rounded-full w-[160px] h-[160px] ">
+                <div className="flex justify-center  items-center rounded-full w-[140px] h-[140px] bg-[#F9FAFB]">
                   <img
                     src="/pineleft.svg"
                     alt=""

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+
 import { getWeatherIcon } from "../utils/getWeatherIcon";
 
 export const LeftSide = ({ city, date, weather }) => {
@@ -12,8 +12,8 @@ export const LeftSide = ({ city, date, weather }) => {
           className="absolute z-0 top-[80px] left-[20px]"
         />
 
-        <div className="z-0 flex h-5/6 flex-col gap-10 w-[414px] bg-gradient-to-t from-white to-white/1 justify-center rounded-3xl z-10 overflow-hidden shadow-md">
-          <div className="backdrop-blur-sm">
+        <div className="z-0 flex h-5/6 flex-col gap-10 w-[414px] bg-gradient-to-t from-white to-white/1 justify-center rounded-3xl z-10 overflow-hidden shadow-md backdrop-blur-sm">
+          <div>
             <div className="flex pl-[40px]">
               <div>
                 <p className="date text-[#9CA3AF]">{date}</p>

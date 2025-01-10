@@ -14,5 +14,7 @@ export const getWeatherIcon = (conditionDay) => {
       return "/weatherIcons/thunder.svg";
     case condition.includes("wind"):
       return "/weatherIcons/wind.svg";
+    default:
+      return "bigsun.svg";
   }
 };
